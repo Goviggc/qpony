@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Największa liczba</title>
+    {# CDN ze względu na to, że nie opłacało się dodawać webpacka do tak małej aplikacji #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    {% if data is iterable %}
+        {% if data|length <= 0 %}
+            <div class="alert alert-danger" role="alert">
+                Brak podanych wartości
+            </div>
+        {% else %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">i</th>
+                    <th scope="col">a</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for val in data %}
+                    <tr>
+                        <td>{{ val.id }}</td>
+                        <td>{{ val.value }}</td>
+                        <td>{{ val.max }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endif %}
+    {{ form(form) }}
+</div>
+</body>
 </html>
