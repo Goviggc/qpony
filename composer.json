@@ -12,6 +12,7 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "symfony/var-dumper": "4.4.*"
     },
     "config": {
         "preferred-install": {
