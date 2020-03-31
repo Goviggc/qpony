@@ -24,6 +24,11 @@ class MaxNumber
     private static $maxNumber = 99999;
 
     /**
+     * @var array|null
+     */
+    private $numbers;
+
+    /**
      * MaxNumber constructor.
      * @param null|int $number
      * @throws \Exception
@@ -48,8 +53,11 @@ class MaxNumber
     /**
      * @return array
      */
-    public function getNumbersTable(): array
+    protected function getNumbersTable(): array
     {
+        if(is_array($this->numbers))
+            return $this->numbers;
+
         $ret = [0, 1];
 
         for($i = 2; $i <= $this->endKey; $i++)
@@ -63,6 +71,7 @@ class MaxNumber
                 $ret[$i] = $ret[$i / 2];
             }
 
+        $this->numbers = $ret;
 
         return $ret;
     }
